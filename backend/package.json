@@ -1,0 +1,26 @@
+{
+  "name": "backend-luento",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.1",
+    "sequelize": "^6.6.5",
+    "umzug": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "nodemon": "^2.0.13",
+    "sequelize-cli": "^6.6.1"
+  },
+  "scripts": {
+    "dev": "nodemon --inspect index.js",
+    "migration:down": "node util/rollback.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
