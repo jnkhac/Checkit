@@ -36,7 +36,6 @@ const Comments = () => {
 
     useEffect(() => {
         commentService.getAllByNote({ id }).then(comments => setComments(comments))
-        // setComments(comments)
     }, [id])
 
     const currentUserId = useSelector(state => state.login.id)
@@ -56,7 +55,6 @@ const Comments = () => {
             try {
                 const newComment = await commentService.createNew(comment)
                 comments.push(newComment)
-                setComments(comments)
                 event.target.comment.value = ''
             } catch (exception) {
                 console.log(exception)

@@ -7,4 +7,6 @@ const login = async (crendentials) => {
     return response.data
 }
 
-export default { login }
+export default {
+    login
+}

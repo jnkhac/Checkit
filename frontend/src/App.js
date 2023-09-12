@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import noteService from './services/notes'
 import topicService from './services/topics'
-import { setNotes } from './reducers/noteReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import BootStrapStyle from './components/BootStrapStyle'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
@@ -11,19 +10,16 @@ import { setUser } from './reducers/loginReducer'
 import PopularPage from './components/PopularPage'
 import PopularPageAuth from './components/PopularPageAuth'
 import SignUpPage from './components/SignUpPage'
-import { setTopics } from './reducers/topicReducer'
 import TopicsPage from './components/TopicsPage'
 import TopicsPageAuth from './components/TopicsPageAuth'
 import savedNotesService from './services/savedNotes'
 import SavedNotesPage from './components/SavedNotesPage'
-import { setSavedNotes } from './reducers/savedNotesReducer'
 import followedTopicsService from './services/followedTopics'
 import { setfollowedTopics } from './reducers/followedTopicsReducer'
 import ratingService from './services/ratings'
 import commentService from './services/comments'
 import TopicNotesPage from './components/TopicNotesPage'
 import TopicNotesPageAuth from './components/TopicNotesPageAuth'
-import { setRatings } from './reducers/ratingReducer'
 import NotePage from './components/NotePage'
 import NotePageAuth from './components/NotePageAuth'
 import NewNotePage from './components/NewNotePage'
@@ -50,31 +46,11 @@ const App = () => {
   const signUpAuth = useSelector(state => state.signup.auth)
 
   useEffect(() => {
-    noteService
-      .getAll().then(notes => dispatch(setNotes(notes)))
-  }, [dispatch])
-
-  useEffect(() => {
-    topicService
-      .getAll().then(topics => dispatch(setTopics(topics)))
-  }, [dispatch])
-
-  useEffect(() => {
-    savedNotesService
-      .getAll().then(savedNotes => dispatch(setSavedNotes(savedNotes)))
-  }, [dispatch])
-
-  useEffect(() => {
     if (loginAuth) {
       followedTopicsService
         .getUserFollowedTopics().then(followedTopics => dispatch(setfollowedTopics(followedTopics)))
     }
   }, [dispatch, loginAuth])
-
-  useEffect(() => {
-    ratingService
-      .getAll().then(ratings => dispatch(setRatings(ratings)))
-  }, [dispatch])
 
   return (
     <div className="fluid-container">
@@ -100,9 +76,6 @@ const App = () => {
           <Route
             path="/savednotes/auth"
             element={!loginAuth ? <Navigate replace to="/popular" /> : <Navigate replace to="/savednotes" />} />
-          {/* <Route
-            path="/login"
-            element={loginAuth ? <Navigate replace to="/home" /> : <LoginPage />} /> */}
           <Route
             path="/login"
             element={<LoginPage />} />

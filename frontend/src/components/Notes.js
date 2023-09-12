@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Alert, Button, Card, Col, Container, ListGroup, ListGroupItem, Row } from "react-bootstrap"
+import { Alert, Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 
@@ -47,40 +47,42 @@ const Notes = ({ getFunction, page }) => {
     }
 
     const Note = ({ note }) => {
-        const handleUpvoteButtonColour = () => {
-            if (note.rating !== null && note.rating === true) {
-                return "danger"
-            }
-            return "secondary"
-        }
+        const [saveButtonColour, setSaveButtonColour] = useState()
+        const [upvoteColour, setUpvoteColour] = useState()
+        const [downvoteColour, setDownvoteColour] = useState()
 
-        const handleDownvoteButtonColour = () => {
-            if (note.rating !== null && note.rating === false) {
-                return "info"
-            }
-            return "secondary"
-        }
-
-        const handleSaveButtonColour = () => {
-            if (note.saved) {
-                return "warning"
-            }
-            return "secondary"
-        }
-
-        const handleSaveText = () => {
-            if (note.saved) {
-                return "Unsave"
-            }
-            return "Save"
-        }
-
-        const [saveButtonColour, setSaveButtonColour] = useState(handleSaveButtonColour)
-        const [upvoteColour, setUpvoteColour] = useState(handleUpvoteButtonColour)
-        const [downvoteColour, setDownvoteColour] = useState(handleDownvoteButtonColour)
-
-        const [saveText, setSaveText] = useState(handleSaveText)
+        const [saveText, setSaveText] = useState()
         const [hidden, setHidden] = useState(false)
+
+        useEffect(() => {
+            if (currentUser.auth) {
+                if (note.rating !== null && note.rating === true) {
+                    setUpvoteColour("danger")
+                } else {
+                    setUpvoteColour("secondary")
+                }
+                if (note.rating !== null && note.rating === false) {
+                    setDownvoteColour("info")
+                } else {
+                    setDownvoteColour("secondary")
+                }
+                if (note.saved) {
+                    setSaveButtonColour("warning")
+                } else {
+                    setSaveButtonColour("secondary")
+                }
+                if (note.saved) {
+                    setSaveText("Unsave")
+                } else {
+                    setSaveText("Save")
+                }
+            } else {
+                setUpvoteColour("secondary")
+                setDownvoteColour("secondary")
+                setSaveButtonColour("secondary")
+                setSaveText("Save")
+            }
+        }, [note])
 
         const handleSave = async () => {
             if (note.saved) {
@@ -266,6 +268,9 @@ const Notes = ({ getFunction, page }) => {
                     </>
                 )
             }
+            // setSaveButtonColour('secondary')
+            // setUpvoteColour('secondary')
+            // setDownvoteColour('secondary')
             return (
                 <>
                     <Button variant={saveButtonColour} onClick={() => setAlert(true)}>{saveText}</Button>

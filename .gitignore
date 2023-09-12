@@ -1,8 +1,10 @@
 node_modules
+.env
+dockerfile
+docker-compose.yml
 
 # backend
 backend/psql-connect.sh
-backend/.env
 backend/config
 backend/requests/*
 backend/seeders/*
