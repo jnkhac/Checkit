@@ -1,11 +1,9 @@
 node_modules
-.env
 
 # backend
 backend/psql-connect.sh
 backend/config
-backend/requests/*
-backend/seeders/*
+backend/requests
 
 # frontend
 # dependencies

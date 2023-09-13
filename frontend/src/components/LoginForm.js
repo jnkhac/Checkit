@@ -15,7 +15,7 @@ import {
     Container
 } from 'react-bootstrap'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 const SignUpText = () => {

@@ -1,13 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { toggleImportanceOf } from '../reducers/noteReducer'
+import { useSelector } from 'react-redux'
 
 import {
     Card,
     Button,
     Container,
-    Col,
-    Row,
-    CardGroup,
     Form,
     ListGroup,
 } from 'react-bootstrap'

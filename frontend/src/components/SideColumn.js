@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react"
-import { Button, Card, ListGroup, Row } from "react-bootstrap"
-import topicService from "../services/topics"
-import noteService from "../services/notes"
+import { Button, Card, Row } from "react-bootstrap"
 
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const SideColumn = ({ title, desc }) => {
     return (

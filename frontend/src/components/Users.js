@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleDisabledOf, toggleAdminOf } from '../reducers/userReducer'
+import { toggleDisabledOf } from '../reducers/userReducer'
 
 const User = ({ user, handleClick }) => {
-  return(
+  return (
     <li onClick={handleClick}>
       {user.username}
     </li>
@@ -12,21 +12,21 @@ const User = ({ user, handleClick }) => {
 const Users = () => {
   const dispatch = useDispatch()
   const users = useSelector(({ filter, users }) => {
-    if ( filter === 'ALL' ) {
+    if (filter === 'ALL') {
       return users
     }
-    return filter  === 'ADMIN' 
+    return filter === 'ADMIN'
       ? users.filter(user => user.administartor)
       : users.filter(user => !user.administartor)
   })
 
-  return(
+  return (
     <ul>
       {users.map(user =>
         <User
           key={user.id}
           user={user}
-          handleClick={() => 
+          handleClick={() =>
             dispatch(toggleDisabledOf(user.id))
           }
         />

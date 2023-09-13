@@ -1,4 +1,4 @@
-const BootStrapStyle = (props) => {
+const BootStrapStyle = () => {
   return (
     <link
       rel="stylesheet"

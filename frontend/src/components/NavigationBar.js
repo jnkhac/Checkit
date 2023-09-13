@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useEffect, useState } from 'react';
-import { removeUser, setUser } from '../reducers/loginReducer';
+import { removeUser } from '../reducers/loginReducer';
 import noteService from '../services/notes'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { NavDropdown } from 'react-bootstrap';
 import { removeAuth } from '../reducers/signUpReducer';
 import ratingService from '../services/ratings'
